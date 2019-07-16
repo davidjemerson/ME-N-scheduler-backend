@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import Router from 'express';
 import eventRouter from './events.js';
 import userRouter from './users.js';
 

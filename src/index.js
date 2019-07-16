@@ -4,6 +4,9 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import mongoose from 'mongoose';
 import routes from './routes';
+import schedule from 'node-schedule';
+
+import scheduleEvents from './utilities/scheduleEvents';
 
 const app = express();
 app.use(cors());
@@ -19,3 +22,9 @@ mongoose.connect(process.env.LOCAL_MONGO_URL, {useFindAndModify: false, useNewUr
 			console.log(`Welcome ${process.env.USER}. Server is listening on ${process.env.PORT}. Let's get cookin'.`);
 		});
 	});
+
+schedule.scheduleJob('*/30 * * * * *', function(fireDate){
+	let now = new Date();
+	scheduleEvents(now);
+	console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + now);
+});

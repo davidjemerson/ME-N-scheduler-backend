@@ -42,6 +42,20 @@ const eventControls = {
 				}
 			})
 			.catch((err) => res.status(422).json(err));
+	},
+	getEventsToSchedule: (date) => {
+		return new Promise (resolve => {
+			Event
+				.find({'scheduledDate': null, 'winMet': true, 'pollClose': {$lte: date}})
+				.then((dbModel) => resolve(dbModel))
+				.catch((err) => err);
+		});
+	},
+	addScheduledDate: (id, date) => {
+		Event
+			.findOneAndUpdate({'_id':id}, {'scheduledDate':date})
+			.then((dbModel) => dbModel)
+			.catch((err) => err);
 	}
 };
 

@@ -15,8 +15,8 @@ const eventSchema = new mongoose.Schema({
 	winThreshold: { type: Number, required: true },
 	winMet: { type: Boolean, default: false },
 	pollClose: { type: Date, required: true },
-	bestDate: Date,
-	scheduledDate: Date
+	bestDate: { type: Date, default: null },
+	scheduledDate: { type: Date, default: null }
 });
 
 const Event = mongoose.model('Event', eventSchema);
