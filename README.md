@@ -6,23 +6,23 @@ Users create an event and select a pool of available datetimes for the invitees 
 Event endpoints currently available:
 
 root/events/
-*create event
-*get all events
+* create event
+* get all events
 
 root/events/"event id"
-*get specific event
+* get specific event
 
 root/events/"event id"/"invite id"
-*put date selections in specific invite
+* put date selections in specific invite
 
 User endpoints currently available:
 
 root/users/
-*create new user
-*get all users
+* create new user
+* get all users
 
 root/users/"email address"
-*get user with matching email address
+* get user with matching email address
 
 root/users/"username"
-*get user with matching username
+* get user with matching username
