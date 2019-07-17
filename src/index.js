@@ -23,7 +23,7 @@ mongoose.connect(process.env.LOCAL_MONGO_URL, {useFindAndModify: false, useNewUr
 		});
 	});
 
-schedule.scheduleJob('*/30 * * * * *', function(fireDate){
+schedule.scheduleJob('*/1 * * * *', function(fireDate){
 	let now = new Date();
 	scheduleEvents(now);
 	console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + now);

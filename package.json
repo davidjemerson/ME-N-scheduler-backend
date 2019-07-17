@@ -1,14 +1,14 @@
 {
   "name": "epv2",
   "version": "1.0.0",
-  "description": "",
+  "description": "MongoDB, Express &amp; Node.js backend for vote based scheduling application",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
     "test": "mocha --require @babel/register 'src/**/**spec.js'"
   },
   "keywords": [],
-  "author": "",
+  "author": "David Emerson",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.0",
@@ -26,7 +26,17 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "moment": "^2.24.0",
     "mongoose": "^5.6.4",
-    "node-schedule": "^1.3.2"
-  }
+    "node-schedule": "^1.3.2",
+    "nodemailer": "^6.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidjemerson/ME-N-scheduler-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidjemerson/ME-N-scheduler-backend/issues"
+  },
+  "homepage": "https://github.com/davidjemerson/ME-N-scheduler-backend#readme"
 }

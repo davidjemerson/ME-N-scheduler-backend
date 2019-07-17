@@ -1,24 +1,29 @@
 import Event from '../models/event';
 import checkForWin from '../utilities/checkForWin';
+import sendEmail from '../utilities/sendEmail';
 
 const eventControls = {
 	findAll: (req, res) => {
 		Event
 			.find(req.query)
-			.populate('organizer', ['firstName', 'lastName', 'email'])
+			.populate('organizer')
 			.then((dbModel) => res.json(dbModel))
 			.catch((err) => res.status(422).json(err));
 	},
 	create: (req, res) => {
 		Event
 			.create(req.body)
-			.then((dbModel) => res.json(dbModel))
+			.then( async (dbModel) => {
+				let populatedModel = await dbModel.populate('organizer').execPopulate();
+				sendEmail(populatedModel, 'invite');
+				return res.json(populatedModel);
+			})
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: (req, res) => {
 		Event
 			.findById({'_id': req.params.id})
-			.populate('organizer', ['firstName', 'lastName', 'email'])
+			.populate('organizer')
 			.then((dbModel) => res.json(dbModel))
 			.catch((err) => res.status(422).json(err));
 	},
@@ -47,6 +52,7 @@ const eventControls = {
 		return new Promise (resolve => {
 			Event
 				.find({'scheduledDate': null, 'winMet': true, 'pollClose': {$lte: date}})
+				.populate('organizer')
 				.then((dbModel) => resolve(dbModel))
 				.catch((err) => err);
 		});
