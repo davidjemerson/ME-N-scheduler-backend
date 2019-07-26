@@ -1,4 +1,4 @@
-import User from '../models/user';
+import User from '../db/models/user';
 
 const userControls = {
 	findAll: (req, res) => {
@@ -9,13 +9,13 @@ const userControls = {
 	},	
 	findByEmail: (req, res) => {
 		User
-			.findOne( {'email': req.params.userEmail} )
+			.findOne( {'local.email': req.params.userEmail} )
 			.then((dbModel) => res.json(dbModel))
 			.catch((err) => res.status(422).json(err));
 	},	
 	findByUsername: (req, res) => {
 		User
-			.findOne( {'username': req.params.username} )
+			.findOne( {'local.username': req.params.username} )
 			.then((dbModel) => res.json(dbModel))
 			.catch((err) => res.status(422).json(err));
 	},	

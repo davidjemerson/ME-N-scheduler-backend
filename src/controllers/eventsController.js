@@ -1,4 +1,4 @@
-import Event from '../models/event';
+import Event from '../db/models/event';
 import checkForWin from '../utilities/checkForWin';
 import sendEmail from '../utilities/sendEmail';
 

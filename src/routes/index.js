@@ -1,14 +1,14 @@
-import Router from 'express';
-import eventRouter from './events.js';
-import userRouter from './users.js';
+const router = require("express").Router();
+const apiRoutes = require("./api");
+const authRoutes = require("./auth");
 
-const router = Router();
+// API Routes
+router.use("/api", apiRoutes);
+router.use("/auth", authRoutes);
 
-router.get('/', (req, res) => {
-	return res.send('Events can be found at /events. Users can be found at /users');
-});
+// // If no API routes are hit, send the React app
+// router.use(function(req, res) {
+//   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+// });
 
-router.use('/events', eventRouter);
-router.use('/users', userRouter);
-
-export default router;
+module.exports = router;
