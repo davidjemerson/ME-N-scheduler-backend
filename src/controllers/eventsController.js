@@ -27,6 +27,13 @@ const eventControls = {
 			.then((dbModel) => res.json(dbModel))
 			.catch((err) => res.status(422).json(err));
 	},
+	findByOrganizer: (req, res) => {
+		Event
+			.find({'organizer': req.params.id})
+			.populate('organizer')
+			.then(dbModel => res.json(dbModel))
+			.catch(err => res.status(422).json(err));
+	},
 	addResponse: (req, res) => {
 		Event
 			.findOneAndUpdate({'_id':req.params.id,'invites._id':req.params.inviteId}, { $set: {'invites.$.votes':req.body}}, {new: true})

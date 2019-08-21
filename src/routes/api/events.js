@@ -10,6 +10,9 @@ eventRouter.route('/')
 eventRouter.route('/:id')
 	.get(eventControls.findById);
 
+eventRouter.route('/organizer/:id')
+	.get(eventControls.findByOrganizer);
+
 eventRouter.route('/response/:id/:inviteId')
 	.put(eventControls.addResponse);
 

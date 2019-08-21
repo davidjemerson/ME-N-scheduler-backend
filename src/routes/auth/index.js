@@ -35,7 +35,10 @@ router.post('/signup', (req, res) => {
                     })
                     newUser.save((err, savedUser) => {
                         if (err) return res.json(err)
-                        return res.json(savedUser)
+                        req.login(newUser, function(err) {
+                            if (err) return res.json(err)
+                        })
+                        return res.json('/events')
                     })
                 }
             })
@@ -44,7 +47,7 @@ router.post('/signup', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    return res.json(`authenticated ${req.user}`)
+    return res.json(req.user)
 })
 
 router.get('/user', (req, res, next) => {

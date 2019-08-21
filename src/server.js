@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import express from 'express'
 import session from 'express-session'
 import db from './db'
+import flash from 'connect-flash'
 const MongoStore = require('connect-mongo')(session)
 import passport from './passport'
 import routes from './routes'
@@ -26,8 +27,9 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(flash())
 
-app.use('/', routes)
+app.use(routes)
 
 app.listen(process.env.PORT, () => {
 	console.log(`Welcome ${process.env.USER}. Server is listening on ${process.env.PORT}. Let's get cookin'.`)
