@@ -18,7 +18,6 @@ root/events/"event id"/"invite id"
 User endpoints currently available:
 
 root/users/
-* create new user
 * get all users
 
 root/users/"email address"
